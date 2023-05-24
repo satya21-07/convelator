@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CGPA to Percentage Converter</title>
+	<style>
+		body {
+         background-color: #333;
+        font-family: Arial, sans-serif;
+        color: lightblue;
+        margin:10px;
+      }
+			table {
+  border-collapse: collapse;
+  width: 100%;
+}
+h1{
+	text-align: center;
+}
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr {background-color:#333}
+
+th {
+  background-color:lightblue;
+  color:black;
+}
+		label {
+			display: inline-block;
+			width: 120px;
+			text-align: right;
+			margin-right: 10px;
+		}
+		input[type="number"] {
+			padding: 5px;
+        width: 40%;
+        border-radius: 5px;
+        border: 1px solid lightblue;
+        margin-bottom: 10px;
+		}
+		button {
+		  padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+		}
+		#st{
+  border-radius: 1px;
+  background-color:#334;
+  padding: 20px;
+   width: 40%;
+		}
+		.back-to-top {
+  display: inline-block;
+  background-color:black;
+  color:lightblue;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 100%;
+  padding: 12px 15px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  transition: background-color 0.3s ease-in-out;
+		}
+		h1,h2{
+        color: cyan;
+      }
+	</style>
+</head>
+<body>
+	<h1><u>CGPA to Percentage Converter</u></h1>
+	<br>
+	<div>
+		<h2>What is cgpa?</h2>
+		<p>
+			cgpa is cumulative Grade Point Average which is an global educational<br> grading system. It is used in schools/colleges to measure overall<br> academic performance of a student. GPA ( Grade Point Average):<br> It is also a grading average but, it is used to specify only for one term. <br>And cgpa is an average of all term sgpa.
+		</p>
+	</div>
+	<div id="st">
+		<form>
+			<label for="cgpa">Enter CGPA:</label><br>
+			<input type="number" id="cgpa" name="cgpa" min="0" max="10" step="0.01" required>
+			<br>
+			<button type="button" onclick="convert()">Convert</button>
+			<br><br>
+			<label for="result">Percentage:</label><br>
+				<input type="number" id="result" name="result" readonly>
+		</form>
+	</div>
+	<div>
+		<h2><u>How to convert cgpa to percentage</u></h2>
+		<p>
+			To convert cgpa to percentage mu has specified or given formula which is 9.5*CGPA <br>where cgpa is grading pointer that you have got.
+		</p>
+		<br>
+		<div>
+			<h4><u>Some Example</u></h4>
+			<table>
+				<tr>
+					<th>CGPA</th>
+					<th>Percentage</th>
+				</tr>
+				<tr>
+					<td>7.5</td>
+					<td> 64.25</td>
+				</tr>
+				<tr>
+					<td>9.8</td>
+					<td>93.10</td>
+				</tr>
+				<tr>
+					<td>5.6</td>
+					<td>53.20</td>
+				</tr>
+				<tr>
+					<td>8.5</td>
+					<td>80.75</td>
+			</tr>
+			</table>
+		</div>
+	</div>
+	<p id="result"></p>
+	<a href="index.html" class="back-to-top">H</a>
+	<script>
+		function convert() {
+			let cgpa = parseFloat(document.getElementById("cgpa").value);
+			let percentage = cgpa * 9.5;
+			document.getElementById("result").value = percentage.toFixed(2);
+		}
+	</script>
+</body>
+</html>

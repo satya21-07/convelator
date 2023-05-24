@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hexadecimal to Other Number System Converter</title>
+	<style>
+		body {
+         background-color: #333;
+        font-family: Arial, sans-serif;
+        color: lightblue;
+        margin:10px;
+      }
+			h1{
+				text-align: center;
+			}
+		label {
+			display: block;
+        margin-bottom: 5px;
+		}
+		input[type="text"] {
+			padding: 5px;
+        width: 40%;
+        border-radius: 5px;
+        border: 1px solid lightblue;
+        margin-bottom: 10px;
+		}
+		button {
+			padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+		}
+		#st{
+  border-radius: 1px;
+  background-color:#334;
+  padding: 20px;
+   width: 40%;
+		}
+		.back-to-top {
+  display: inline-block;
+  background-color:black;
+  color:lightblue;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 100%;
+  padding: 12px 15px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  transition: background-color 0.3s ease-in-out;
+		}
+		h1,h2{
+        color: cyan;
+      }
+	</style>
+</head>
+<body>
+	<h1><u>Hexadecimal to Other Number System Converter</u></h1>
+	<div>
+		<p>
+			First up all what is Hexadecimal number System?So,it is an number System with a radix 16.<br>
+			In thes number System we have 0-15 numbers where 0-9 are represnt normally as decimal format<br>
+			but 10-15 are represnt by alphabets which is from A-F.Wide application of such number system<br>
+			can be seen in microprocessor which stores 16 bit of data and so on.<br>
+		</p>
+	</div>
+	<form>
+		<div>
+			<h2><u>Hexadecimal to Decimal</u></h2>
+			<p>
+				how can one convert Hexadecimal number to decimal?First up all, one has to write down weights<br>
+				corresponding to different positions then multiply each digit in given number with corresponding<br>
+				weight to obtain product numbers and then add all the product numbers to get decimal equivalent.<br>
+				But,stil most humans only knows decimal number.So,it is necessary to have an software which can<br>
+				convert hexdecimal number to respective decimal number .So,calcont have that in which you have to<br>
+				just enter hexdecimal number in below and click to convert..
+			</p>
+		</div>
+		<div id="st">
+    <label for="hex">Enter Hexadecimal:</label>
+		<input type="text" id="hex" name="hex" maxlength="8" pattern="[0-9A-Fa-f]{1,8}" required>
+		<br>
+		<label for="dec">Decimal:</label>
+		<input type="text" id="dec" name="dec" readonly>
+		<br>
+		<button type="button" onclick="convert()">Convert</button>
+		</div>
+		<div>
+			<h2><u>Hexadecimal to Binary</u></h2>
+			<p>
+				how can one convert Hexadecimal number to binary manually?We just write binary equivalent of each<br>
+				hexadecimal number one by one and then combine all those binary number.
+			</p>
+		</div>
+		<div id="st">
+			<label for="hex">Enter Hexadecimal:</label>
+		<input type="text" id="hex" name="hex" maxlength="8" pattern="[0-9A-Fa-f]{1,8}" required>
+		<br>
+		<label for="bin">Binary:</label>
+		<input type="text" id="bin" name="bin" readonly>
+		<br>
+		<button type="button" onclick="convert()">Convert</button>
+		</div>
+		<div>
+			<h2><u>Hexadecimal to Octal</u></h2>
+			<p>
+				how can one convert hexadecimal number to octal manually?We just write binary equivalent of each<br>
+				hexadecimal number one by one and then combine all those binary number.And then again we convert<br>
+				those binary to octal.
+			</p>
+		</div>
+		<div id="st">
+			<label for="hex">Enter Hexadecimal:</label>
+		<input type="text" id="hex" name="hex" maxlength="8" pattern="[0-9A-Fa-f]{1,8}" required>
+		<br>
+		<label for="oct">Octal:</label>
+		<input type="text" id="oct" name="oct" readonly>
+		<br>
+		<button type="button" onclick="convert()">Convert</button>
+		</div>
+		
+	</form>
+	<a href="index.html" class="back-to-top">H</a>
+	<script>
+		function convert() {
+			let hex = document.getElementById("hex").value.toUpperCase();
+			let dec = parseInt(hex, 16);
+			let bin = dec.toString(2);
+			let oct = dec.toString(8);
+
+			document.getElementById("dec").value = dec;
+			document.getElementById("bin").value = bin;
+			document.getElementById("oct").value = oct;
+		}
+	</script>
+</body>
+</html>

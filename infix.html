@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Infix to Prefix/Postfix Converter</title>
+  <style>
+   body {
+         background-color: #333;
+        font-family: Arial, sans-serif;
+        color: lightblue;
+        margin:10px;
+      }
+			h1{
+				text-align: center;
+			}
+		label {
+			display: block;
+        margin-bottom: 5px;
+		}
+		input[type="text"] {
+			padding: 5px;
+        width: 40%;
+        border-radius: 5px;
+        border: 1px solid lightblue;
+        margin-bottom: 10px;
+		}
+  
+    button {
+      padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+    }
+    #st{
+  border-radius: 1px;
+  background-color:#334;
+  padding: 20px;
+   width: 40%;
+		}
+    .back-to-top {
+  display: inline-block;
+  background-color:black;
+  color:lightblue;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 100%;
+  padding: 12px 15px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  transition: background-color 0.3s ease-in-out;
+		}
+    h1,h2{
+        color: cyan;
+      }
+  </style>
+</head>
+<body>
+  <div>
+    <h1><u>Infix to Prefix/Postfix Converter</u></h1>
+    <form>
+      <div>
+        <h2><u>What is Infix and Postfix Operation</u></h2>
+        <p>
+          An infix expression is expression which is used by us in day today life An infix expression<br>
+          is a single letter, or an operator, proceeded by one infix string and followed by another infix<br>
+          string. e.g. A,A + B,(A + B) + (C – D).So,in which we have operators between operands.And postfix <br>
+          expression (also called Reverse Polish Notation) is a single letter or an operator, preceded by two<br>
+          postfix strings. Every postfix string longer than a single variable contains first and second operands<br>
+          followed by an operator.e.g. A,A B +,A B + C D –
+        </p>
+      </div>
+      <br>
+      <div id="st">
+        <label for="expression"> Enter the Infix Expression:</label>
+        <input type="text" id="expression" placeholder="Enter infix expression">
+        <label for="prefix">Prefix Expression:</label>
+        <input type="text" id="prefix" readonly>
+        <button onclick="convert()">Convert</button>
+      </div>
+      <div>
+        <h2><u>Conversion From Infix to Postfix</u></h2>
+        <p>
+          To convert infix expression to postfix expression, computers usually use the stack data structure.<br>
+          By scanning the infix expression from left to right, when we will get any operand, simply add them<br>
+          to the postfix form, and for the operator and parenthesis, add them in the stack maintaining the <br>
+          precedence of them.So, here you can convert infix expression to postfix by just entering infix<br>
+          expression.Checkout examples that are mention below in table.
+        </p>
+      </div>
+      <br>
+      <div>
+        <h2><u>What is a Prefix Expression</u></h2>
+        <p>
+         An expression is called the prefix expression if the operator appears in the expression before<br>
+        the operands. Simply of the form (operator operand1 operand2).e.g. *+AB-CD
+        </p>
+      </div>
+      <div id="st">
+        <label for="expression"> Enter the Infix Expression:</label>
+        <input type="text" id="expression" placeholder="Enter infix expression">
+        <label for="postfix">Postfix Expression:</label>
+        <input type="text" id="postfix" readonly>
+      <button onclick="convert()">Convert</button>
+    </div>
+    <br>
+    <div>
+      <h2><u>Conversion From Infix to Prefix</u></h2>
+      <p>
+      To convert Infix to Prefix expression, computers usually use the stack data structure.<br>
+1. Reverse the infix expression.<br>
+2.Obtain the “nearly” postfix expression of the modified expression .<br>
+3. Reverse the postfix expression.<br>
+      </p>
+    </div>
+    </form>
+    <a href="index.html" class="back-to-top">H</a>
+  <script>
+    function convert() {
+      const infixExpression = document.getElementById('expression').value;
+      const prefixExpression = infixToPrefix(infixExpression);
+      const postfixExpression = infixToPostfix(infixExpression);
+      
+      document.getElementById('prefix').value = prefixExpression;
+      document.getElementById('postfix').value = postfixExpression;
+    }
+    
+    function infixToPrefix(infix) {
+      function getPrecedence(operator) {
+    switch (operator) {
+      case '+':
+      case '-':
+        return 1;
+      case '*':
+      case '/':
+        return 2;
+      case '^':
+        return 3;
+      default:
+        return 0;
+    }
+  }
+
+  // Helper function to reverse a string
+  function reverseString(str) {
+    return str.split('').reverse().join('');
+  }
+
+  // Stack to hold operators and parentheses
+  const stack = [];
+
+  // Resulting prefix expression
+  let prefix = '';
+
+  // Reverse the infix expression
+  infix = reverseString(infix);
+
+  // Loop through the reversed infix expression
+  for (let i = 0; i < infix.length; i++) {
+    const token = infix[i];
+
+    if (token === '(') {
+      // If token is a left parenthesis, pop all operators and append to prefix until right parenthesis is found
+      while (stack.length > 0 && stack[stack.length - 1] !== ')') {
+        prefix += stack.pop();
+      }
+
+      // Pop the right parenthesis
+      stack.pop();
+    } else if (token === ')') {
+      // If token is a right parenthesis, push onto stack
+      stack.push(token);
+    } else if (token.match(/[a-zA-Z0-9]/)) {
+      // If token is an operand, append to prefix
+      prefix += token;
+    } else {
+      // If token is an operator, pop operators from stack and append to prefix until an operator with lower precedence or a left parenthesis is found
+      while (stack.length > 0 && getPrecedence(stack[stack.length - 1]) > getPrecedence(token) && stack[stack.length - 1] !== '(') {
+        prefix += stack.pop();
+      }
+
+      // Push the current operator onto the stack
+      stack.push(token);
+    }
+  }
+
+  // Pop any remaining operators from the stack and append to prefix
+  while (stack.length > 0) {
+    prefix += stack.pop();
+  }
+
+  // Reverse the prefix expression and return it
+  return reverseString(prefix);
+    }
+    
+    function infixToPostfix(infix) {
+         var output = "";
+         var stack = [];
+         for (var i = 0; i < infix.length; i++) {
+            var ch = infix.charAt(i);
+            if (ch == '+' || ch == '-' || ch == '*' || ch == '/') {
+               while (stack.length != 0 && stack[stack.length - 1] != '(' &&
+               getPrecedence(ch) <= getPrecedence(stack[stack.length - 1])) {
+                  output += stack.pop();
+                  output += ' ';
+               }
+               stack.push(ch);
+            }
+            else if (ch == '(') {
+               stack.push(ch);
+            }
+            else if (ch == ')') {
+               while (stack.length != 0 && stack[stack.length - 1] != '(') {
+                  output += stackHTML.pop();
+                  output += ' ';
+               }
+               stack.pop();
+            } else {
+               output += ch;
+            }
+         }
+         while (stack.length != 0) {
+            output += stack.pop();
+            output += ' ';
+         }
+         return output;
+      }
+      function getPrecedence(ch) {
+         if (ch == '+' || ch == '-') {
+            return 1;
+         }
+         else if (ch == '*' || ch == '/') {
+            return 2;
+         } else {
+            return 0;
+         }
+      }
+
+  </script>
+</body>
+</html>

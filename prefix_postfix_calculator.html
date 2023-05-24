@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Postfix and Prefix Calculator</title>
+	<style>
+		body {
+         background-color: #333;
+        font-family: Arial, sans-serif;
+        color: lightblue;
+        margin:10px;
+      }
+			h1{
+				text-align: center;
+			}
+		label {
+			display: block;
+        margin-bottom: 5px;
+		}
+		input[type="text"] {
+			padding: 5px;
+        width: 40%;
+        border-radius: 5px;
+        border: 1px solid lightblue;
+        margin-bottom: 10px;
+		}
+		button {
+			padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer
+		}
+		#st{
+  border-radius: 1px;
+  background-color:#334;
+  padding: 20px;
+   width: 40%;
+		}
+		h1,h2{
+        color: cyan;
+      }
+		.back-to-top {
+  display: inline-block;
+  background-color:black;
+  color:lightblue;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 100%;
+  padding: 12px 15px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  transition: background-color 0.3s ease-in-out;
+		}
+	</style>
+</head>
+<body>
+	<h1><u>Postfix and Prefix Calculator</u></h1>
+	<form>
+		<div>
+			<h2><u>What is a Postfix Expression</u></h2>
+			<p>
+				An postfix expression (also called Reverse Polish Notation) is a single<br> letter or an operator, preceded by two postfix strings. Every postfix<br> string longer than a single variable contains first and second operands <br>followed by an operator.e.g. A,A B +,A B + C D –.
+			</p>
+		</div>
+		<br>
+<div id="st">
+	<label for="expression">Enter expression:</label>
+		<input type="text" id="expression" name="expression" required>
+		<br>
+		<label for="postfix">Postfix:</label>
+		<input type="text" id="postfix" name="postfix" readonly>
+		<br>
+		<button type="button" onclick="calculatePostfix()">Calculate Postfix</button>
+		<br>
+</div>
+<div>
+	<h2>How to Calculate it?</h2>
+	<p>
+		1.First we read expression from left to right.So,During reading the expression from left to right, push the element in the stack if it is an operand.<br>
+2.If the current character is an operatorthen pop the two operands from the stack and then evaluate it.<br>
+3.Push back the result of the evaluation. Repeat it till the end of the expression.<br>
+	</p>
+</div>
+<br>
+<div>
+	<h2><u>What is Prefix Expression</u></h2>
+	<p>
+		An prefix expression is a expression in which first operator comes and<br>proceded by strings. Every prefix string longer than a single variable<br> contains first and second operands followed by an operator.e.g. A,+A <br>B ,*A B ,+ * A B/ C D.
+	</p>
+</div>
+<br>
+<div id="st">
+	<label for="expression">Enter expression:</label>
+		<input type="text" id="expression" name="expression" required>
+		<br>
+	<label for="prefix">Prefix:</label>
+		<input type="text" id="prefix" name="prefix" readonly>
+		<br>
+		<button type="button" onclick="calculatePrefix()">Calculate Prefix</button>
+</div>
+<br>
+<div>
+	<h2>How to Calculate it?</h2>
+	<p>
+		1.First we read expression from right to left. So,During reading the expression from right to left, push the element in the stack if it is an operand.<br>
+2.If the current character is an operatorthen pop the two operands from the stack and then evaluate it.<br>
+3.Push back the result of the evaluation. Repeat it till the end of the expression.<br>
+	</p>
+</div>
+	</form>
+	<a href="index.html" class="back-to-top">H</a>
+	<script>
+		function calculatePostfix() {
+			let expression = document.getElementById("expression").value;
+			let stack = [];
+
+			for (let i = 0; i < expression.length; i++) {
+				if (!isNaN(expression[i])) {
+					stack.push(parseInt(expression[i]));
+				} else {
+					let operand2 = stack.pop();
+					let operand1 = stack.pop();
+
+					switch (expression[i]) {
+						case '+':
+							stack.push(operand1 + operand2);
+							break;
+						case '-':
+							stack.push(operand1 - operand2);
+							break;
+						case '*':
+							stack.push(operand1 * operand2);
+							break;
+						case '/':
+							stack.push(operand1 / operand2);
+							break;
+					}
+				}
+			}
+
+			document.getElementById("postfix").value = stack.pop();
+		}
+
+		function calculatePrefix() {
+			let expression = document.getElementById("expression").value;
+			let stack = [];
+
+			for (let i = expression.length - 1; i >= 0; i--) {
+				if (!isNaN(expression[i])) {
+					stack.push(parseInt(expression[i]));
+				} else {
+					let operand1 = stack.pop();
+					let operand2 = stack.pop();
+
+					switch (expression[i]) {
+						case '+':
+							stack.push(operand1 + operand2);
+							break;
+						case '-':
+							stack.push(operand1 - operand2);
+							break;
+						case '*':
+							stack.push(operand1 * operand2);
+							break;
+						case '/':
+							stack.push(operand1 / operand2);
+							break;
+					}
+				}
+			}
+
+			document.getElementById("prefix").value = stack.pop();
+		}
+	</script>
+</body>
+</html>

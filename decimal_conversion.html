@@ -1,0 +1,164 @@
+<html>
+   <head>
+      <title> Convertor </title>
+      <style>
+         body {
+         background-color: #333;
+        font-family: Arial, sans-serif;
+        color: lightblue;
+        margin:10px;
+      }
+      h1{
+        text-align: center;
+      }
+        title{
+          text-align: center;
+        }
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input[type="text"] {
+        padding: 5px;
+        width: 40%;
+        border-radius: 5px;
+        border: 1px solid lightblue;
+        margin-bottom: 10px;
+      }
+
+      button {
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0069d9;
+      }
+
+      .result {
+        margin-top: 20px;
+      }
+
+      .result label {
+        font-weight: bold;
+      }
+      #st{
+  border-radius: 1px;
+  background-color:#334;
+  padding: 20px;
+   width: 40%;
+		}
+    .back-to-top {
+  display: inline-block;
+  background-color:black;
+  color:lightblue;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 100%;
+  padding: 12px 15px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  transition: background-color 0.3s ease-in-out;
+		}
+    h1,h3{
+        color: cyan;
+      }
+      </style>
+   </head>
+   <body>
+    <h1><u>Decimal Converter</u></h1>
+    <section>
+      <p>
+        First up all what is decimal number System?So,it is an number System that we use daily while<br>
+        doing any calculations counting and all but it is an system which has a base of 10.As most<br>
+        modern computer systems or other system that uses the binary,octal & hexadecimal logic for<br>
+        their operation. That's why convelator has a software which converts decimal to binary,octal,<br>
+        hexadecimal numbers which you can see in below..</p>
+    </section>
+    <form>
+      <div id="st">
+        <label for="decimal">Decimal Number:</label>
+      <input type="text" id="decimal" placeholder="Enter decimal" />
+
+      <button type="button" onclick="convert()">Convert</button>
+
+      </div>
+      <div class="result">
+        <div>
+          <h3><u>Decimal to Binary</u></h3>
+          <p>
+            How one can convert decimal number sytem to binary which is easily understandable<br>
+            to computers manually ?First up all,one has to divide the integer part if given decimal<br>
+            number by the base and note down the remainder then continue to divide the quotient by<br>
+            the base until there is nothing left,nothing the remainders from each step and finally<br>
+            list the remainder values in reverseorder from bottom to top to find equivalent Binary number<br>
+            These is some algortihm from which you can learn and you'll get an idea.But it'll be ofcourse<br>
+            time consuming so you can convert it from here by just entering valid decimal number.
+          </p>
+        </div>
+        <div id="st">
+          <label for="binary">Binary Number:</label>
+          <input type="text" id="binary" placeholder="Binary number will appear here" readonly />
+        </div>
+        <div>
+          <h3><u>Decimal to Octal</u></h3>
+          <p>
+            How one can convert decimal number sytem to octal manually ?First up all,one has to divide<br>
+            the integer part if given decimal number by the base and note down the remainder then continue<br>
+            to divide the quotient by the base until there is nothing left,nothing the remainders from each <br>
+            step and finally list the remainder values in reverseorder from bottom to top to find equivalent <br>
+            octal number.Still its a manual procees ..so,you can convert it from here by just entering proper<br>
+            decimal number,but its always good to have a knowledge
+          </p> 
+        </div>
+        <div id="st">
+          <label for="octal">Octal Number:</label>
+        <input type="text" id="octal" placeholder="Octal number will appear here" readonly />
+        </div>
+        <div>
+          <h3><u>Decimal to Hexadecimal</u></h3>
+          <p>
+            How one can convert decimal number sytem to hexadecimal manually ?First up all,one has to divide<br>
+            the integer part if given decimal number by the base and note down the remainder then continue to<br>
+            divide the quotient by the base until there is nothing left,nothing the remainders from each step<br>
+            and finally list the remainder values in reverseorder from bottom to top to find equivalent hexadecimal<br>
+            number.These is some algortihm from which you can learn and you'll get an idea.But it'll be ofcourse<br>
+            time consuming so you can convert it from here by just entering valid decimal number.
+          </p>
+        </div>
+        <div id="st">
+          <label for="hexadecimal">Hexadecimal Number:</label>
+          <input type="text" id="hexadecimal" placeholder="Hexadecimal number will appear here" readonly />
+        </div>
+      </div>
+    </form>
+      <a href="index.html" class="back-to-top">H</a>
+      <script>
+         function convert() {
+        let decimalInput =parseInt(document.getElementById("decimal").value);
+        let binaryOutput = document.getElementById("binary");
+        let octalOutput = document.getElementById("octal");
+        let hexadecimalOutput = document.getElementById("hexadecimal");
+
+        let binary = decimalInput.toString(2);
+
+        // Convert decimal to octal
+        let octal = decimalInput.toString(8);
+
+        // Convert decimal to hexadecimal
+        let hexadecimal = decimalInput.toString(16);
+
+        // Update outputs
+        binaryOutput.value =binary;
+        octalOutput.value = octal;
+        hexadecimalOutput.value = hexadecimal;
+         }
+         </script>
+      </body>
+   </html>

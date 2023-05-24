@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EMI Calculator</title>
+	<style>
+		body {
+         background-color: #333;
+        font-family: Arial, sans-serif;
+        color: lightblue;
+        margin:10px;
+      }
+			h1{
+				text-align: center;
+			}
+		label {
+			display: block;
+        margin-bottom: 5px;
+		}
+		input[type="number"] {
+			padding: 5px;
+        width: 40%;
+        border-radius: 5px;
+        border: 1px solid lightblue;
+        margin-bottom: 10px;
+		}
+		select {
+			padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+		}
+		button {
+			padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+		}
+		#st{
+  border-radius: 1px;
+  background-color:#334;
+  padding: 20px;
+   width: 40%;
+		}
+		.back-to-top {
+  display: inline-block;
+  background-color:black;
+  color:lightblue;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 100%;
+  padding: 12px 15px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  transition: background-color 0.3s ease-in-out;
+		}
+		h1,h3{
+        color: cyan;
+      }
+	</style>
+</head>
+<body>
+	<h1><u>EMI Calculator</u></h1>
+	<div>
+		<h3>What is EMI?</h3>
+		<p>
+			It is Equated Monthly Income which is a fixed payment amount made by a<br> borrower to a lender at a specified date each calendar month. Equated <br>monthly installments are used to pay off both interest and principal<br> each month so that over a specified number of years, the loan is paid<br> off in full. With most common types of loans—such as real estate <br>mortgages, auto loans, and stude loans—the borrower makes fixed periodic<br> payments to the lender over the course of several years with the goal of<br> retiring the loan.
+		</p>
+	</div>
+	<div id="st">
+		<form>
+			<label for="principal">Loan Amount:</label>
+			<input type="number" id="principal" name="principal" min="0" required>
+			<br>
+			<label for="interest">Interest Rate:</label>
+			<input type="number" id="interest" name="interest" min="0" max="100" step="0.01" required>
+			<select name="tenure" id="tenure">
+				<option value="months">Months</option>
+				<option value="years">Years</option>
+			</select>
+			<br>
+			<label for="term">Loan Term:</label>
+			<input type="number" id="term" name="term" min="0" required>
+			<br>
+			<button type="button" onclick="calculate()">Calculate EMI</button>
+			<br>
+			<label for="emi">EMI:</label>
+			<input type="text" id="emi" name="emi" readonly>
+		</form>
+	</div>
+	<br>
+	<div>
+		<h3>How to calculate it?</h3>
+		<p>
+			Formula to calculate EMI is simple, EMI = [P x R x (1+R)^N]/[(1+R)^N-1],<br> where P stands for the loan amount or principal, R is the interest rate <br>per month [if the interest rate per annum is 11%, then the rate of<br> interest will be 11/(12 x 100)], and N is the number of monthly <br> installments.
+
+     So you can calculate these by entering loan amount,% of interest and <br>time period (yrs) and calculate EMI to be given with how much extra <br>interest have to give ,in below.
+		</p>
+	</div>
+	<br>
+	<div>
+		<h3>Applications</h3>
+		<p>
+			What can be the application of such online loan calculator? Since many <br>mathematical student/expert,employee who works in bak usualy calculates<br> EMI in calculator by applying the formula.But why to waste time if we<br> have such kind of calculators.It can be used to calculate any kind of<br> loan such as car,home etc.By just enering few credentials.
+		</p>
+	</div>
+	<a href="index.html" class="back-to-top">H</a>
+	<script>
+		function calculate() {
+			let principal = parseFloat(document.getElementById("principal").value);
+			let interest = parseFloat(document.getElementById("interest").value) / 100;
+			let tenure = document.getElementById("tenure").value;
+			let term = parseFloat(document.getElementById("term").value);
+
+			if (tenure === "years") {
+				term *= 12;
+			}
+
+			let emi = (principal * interest * Math.pow(1 + interest, term)) / (Math.pow(1 + interest, term) - 1);
+
+			document.getElementById("emi").value = emi.toFixed(2);
+		}
+	</script>
+</body>
+</html>

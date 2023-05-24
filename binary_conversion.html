@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Binary Converter</title>
+    <style>
+      body {
+         background-color: #333;
+        font-family: Arial, sans-serif;
+        color: lightblue;
+        margin:10px;
+      }
+      h1{
+        text-align: center;
+      }
+      h1,h3{
+        color: cyan;
+      }
+        title{
+          text-align: center;
+        }
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input[type="text"] {
+        padding: 5px;
+        width: 40%;
+        border-radius: 5px;
+        border: 1px solid lightblue;
+        margin-bottom: 10px;
+      }
+
+      button {
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0069d9;
+      }
+
+      .result {
+        margin-top: 20px;
+      }
+
+      .result label {
+        font-weight: bold;
+      }
+      #st{
+  border-radius: 1px;
+  background-color:#334;
+  padding: 20px;
+   width: 40%;
+		}
+    .back-to-top {
+  display: inline-block;
+  background-color:black;
+  color:lightblue;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 100%;
+  padding: 12px 15px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  transition: background-color 0.3s ease-in-out;
+		}
+    </style>
+  </head>
+  <body>
+    <h1><u>Binary Converter</u></h1>
+    <section>
+      <p>
+        First up all what is binary number System?So,it is an number System with a radix 2.<br>
+        As most modern computer systems use the binary logic for their operation.<br>
+        A computer cannot operate on the decimal number system.<br>
+        A binary number system uses only two digits namely 0 and 1.<br>
+        So,we can convert these to decimal,hexadecimal and octal number system.That you can see in below..
+      </p>
+    </section>
+    <form>
+      <div id="st">
+        <label for="binary">Binary Number:</label>
+      <input type="text" id="binary" placeholder="Enter binary number" />
+
+      <button type="button" onclick="convert()">Convert</button>
+
+      </div>
+      <div class="result">
+        <div>
+          <h3><u>Binary to Decimal</u></h3>
+          <p>how can one convert binary number to decimal manually?First up all,<br>
+             one has to write down weights corresponding to different positions<br> 
+             then multiply each digit in given number with corresponding weight to<br>
+             obtain product numbers and then add all the product numbers to get decimal<br>
+             equivalent.But,stil most humans only knows decimal number.So,it is necessary<br>
+             to have an software which can convert longest binary number to respective decimal<br>
+             number.So,convelator have that in which you have to just enter binary number in below<br>
+             and click to convert..</p>
+        </div>
+        <div id="st">
+          <label for="decimal">Decimal Number:</label>
+          <input type="text" id="decimal" placeholder="Decimal number will appear here" readonly />
+        </div>
+        <div>
+          <h3><u>Binary to Octal</u></h3>
+          <p>
+            how can one convert binary number to octal manually?First up all<br>
+            one has to write down weights corresponding to different positions<br>
+            then multiply each digit in given number with corresponding weight to<br>
+            obtain product numbers and then add all the product numbers to get octal<br>
+            equivalent.But,stil it is necessary to have an software which can convert<br>
+            longest bytes to respective octal number.So,convelator have that in which<br>
+            you have to just enter binary number in below and click to convert..
+          </p> 
+        </div>
+        <div id="st">
+          <label for="octal">Octal Number:</label>
+        <input type="text" id="octal" placeholder="Octal number will appear here" readonly />
+        </div>
+        <div>
+          <h3><u>Binary to Hexadecimal</u></h3>
+          <p>
+            how can one convert binary number to hexadecimal manually?First up all<br>
+            one has to write down weights corresponding to different positions then<br>
+            multiply each digit in given number with corresponding weight to obtain<br>
+            product numbers and then add all the product numbers to get hexadecimal<br>
+            equivalent.But,stil it is necessary to have an software which can convert<br>
+            longest bytes to respective hexadecimal number.So,covelator have that in<br>
+            which you have to just enter binary number in below and click to convert..
+          </p>
+        </div>
+        <div id="st">
+          <label for="hexadecimal">Hexadecimal Number:</label>
+          <input type="text" id="hexadecimal" placeholder="Hexadecimal number will appear here" readonly />
+        </div>
+      </div>
+    </form>
+    <a href="index.html" class="back-to-top">H</a>
+    <script>
+      function convert() {
+        const binaryInput = document.getElementById("binary");
+        const decimalOutput = document.getElementById("decimal");
+        const octalOutput = document.getElementById("octal");
+        const hexadecimalOutput = document.getElementById("hexadecimal");
+
+        // Convert binary to decimal
+        const decimal = parseInt(binaryInput.value, 2);
+
+        // Convert decimal to octal
+        const octal = decimal.toString(8);
+
+        // Convert decimal to hexadecimal
+        const hexadecimal = decimal.toString(16);
+
+        // Update outputs
+        decimalOutput.value = decimal;
+        octalOutput.value = octal;
+        hexadecimalOutput.value = hexadecimal;
+      }
+    </script>
+  </body>
+</html>
